@@ -29,7 +29,7 @@ spec:
                 - name: schifferers-registry
             containers:
                 - name: app
-                  image: ghcr.io/Schifferers/foreman-chatbot:latest
+                  image: ghcr.io/schifferers/foreman-chatbot:latest
                   imagePullPolicy: Always
                   envFrom:
                       - configMapRef:
