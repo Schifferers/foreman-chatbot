@@ -1,0 +1,12 @@
+slackclient
+python-dotenv
+pyyaml
+jsonpath-rw
+requests
+sentry-sdk
+Pallets-Sphinx-Themes
+Sphinx==4.5.0
+sphinx-issues
+sphinxcontrib-log-cabinet
+sphinx-tabs
+rstcheck
