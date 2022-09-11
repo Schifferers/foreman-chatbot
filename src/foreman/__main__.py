@@ -7,10 +7,12 @@ from slackbot import args
 import logging
 import time
 import sentry_sdk
+import os
+from foreman import constants
 
 
 logging.info("Initializing Sentry.")
-sentry_sdk.init(dsn="https://7f0acdcf494c418aadccf30c5dc45f71@sentry.io/2605676")
+sentry_sdk.init(dsn=os.environ[constants.SENTRY_DSN])
 
 
 logging.info("Starting Foreman Slack bot.")

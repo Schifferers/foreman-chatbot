@@ -3,8 +3,8 @@ __author__ = "Paul Schifferer <paul@schifferers.net>"
 """
 
 import logging
-from slackbot.manager import request_list, submit_action, request_server
-from slackbot.responder import respond
+from foreman.manager import request_list, submit_action, request_server
+from foreman.responder import respond
 import time
 
 

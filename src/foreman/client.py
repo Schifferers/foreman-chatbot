@@ -5,15 +5,16 @@ __author__ = "Paul Schifferer <paul@schifferers.net>"
 import logging
 import os
 import slack
-from slackbot.dispatcher import dispatch_action
-from slackbot.process import assemble_text, process_text
-from slackbot.responder import respond
+from foreman.dispatcher import dispatch_action
+from foreman.process import assemble_text, process_text
+from foreman.responder import respond
+from foreman import constants
 
 
 my_info = {}
 
 
-def get_client(token:str = os.environ['SLACK_API_TOKEN']):
+def get_client(token:str = os.environ[constants.SLACK_API_TOKEN]):
     logging.info("Creating Slack client.")
     client = slack.RTMClient(token=token)
     logging.debug("client: %s", client)

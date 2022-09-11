@@ -1,0 +1,54 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+    name: chatbot
+
+spec:
+    replicas: 1
+    strategy:
+        rollingUpdate:
+            maxSurge: 1
+            maxUnavailable: 1
+        type: RollingUpdate
+    selector:
+        matchLabels:
+            app: chatbot
+            version: v1
+            platform: foreman
+    template:
+        metadata:
+            labels:
+                app: chatbot
+                version: v1
+                platform: foreman
+        spec:
+            serviceAccountName: chatbot
+            imagePullSecrets:
+                - name: schifferers-registry
+            containers:
+                - name: app
+                  image: ghcr.io/Schifferers/foreman-chatbot:latest
+                  imagePullPolicy: Always
+                  envFrom:
+                      - configMapRef:
+                            name: chatbot
+                      - configMapRef:
+                            name: chatbot-env
+                      - secretRef:
+                            name: chatbot
+                      - secretRef:
+                            name: common
+                  env: []
+                  ports:
+                      - containerPort: 5000
+                        name: http
+                  resources:
+                      requests:
+                          cpu: "20m"
+                          memory: "55m"
+                      limits:
+                          cpu: "1.0"
+                          memory: "1Gi"
+            restartPolicy: Always

@@ -6,11 +6,12 @@ import requests
 import os
 import logging
 import json
+from foreman import constants
 
 
 def get_intent(text:str) -> dict:
-    rasa_url = f"{os.environ['RASA_URL']}/model/parse"
-    rasa_token = os.environ['RASA_AUTH_TOKEN']
+    rasa_url = f"{os.environ[constants.RASA_URL]}/model/parse"
+    rasa_token = os.environ[constants.RASA_AUTH_TOKEN]
 
     r = requests.post(rasa_url,
                       headers={

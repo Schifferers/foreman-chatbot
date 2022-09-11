@@ -3,9 +3,9 @@ __author__ = "Paul Schifferer <paul@schifferers.net>"
 """
 
 import logging
-from slackbot.handlers import *
-from slackbot.exceptions import ForbiddenException, NotFoundException, ActionNotSupportedException
-from slackbot.responder import respond
+from foreman.handlers import *
+from foreman.exceptions import ForbiddenException, NotFoundException, ActionNotSupportedException
+from foreman.responder import respond
 
 
 def dispatch_action(message_data:dict, action_data:dict, user:str):

@@ -6,7 +6,8 @@ import logging
 import requests
 import os
 import json
-from slackbot.exceptions import ForbiddenException, NotFoundException
+from foreman.exceptions import ForbiddenException, NotFoundException
+from foreman import constants
 
 
 def _handle_response(response):
@@ -21,11 +22,11 @@ def _handle_response(response):
 def request_server(server_id:str, user:str) -> dict:
     logging.debug("server_id: %s, user: %s", server_id, user)
 
-    url = f"{os.environ['MANAGER_URL']}/api/v1/servers/{server_id}"
+    url = f"{os.environ[constants.MANAGER_URL]}/api/v1/servers/{server_id}"
 
     r = requests.get(url,
                       headers={
-                          'Authorization': f"Bearer {os.environ['MANAGER_AUTH_TOKEN']}",
+                          'Authorization': f"Bearer {os.environ[constants.MANAGER_AUTH_TOKEN]}",
                           'Accept': 'application/json',
                           'X-User-ID': user,
                       },
@@ -42,11 +43,11 @@ def request_server(server_id:str, user:str) -> dict:
 def request_list(user:str):
     logging.debug("user: %s", user)
 
-    url = f"{os.environ['MANAGER_URL']}/api/v1/servers"
+    url = f"{os.environ[constants.MANAGER_URL]}/api/v1/servers"
 
     r = requests.get(url,
                       headers={
-                          'Authorization': f"Bearer {os.environ['MANAGER_AUTH_TOKEN']}",
+                          'Authorization': f"Bearer {os.environ[constants.MANAGER_AUTH_TOKEN]}",
                           'Accept': 'application/json',
                           'X-User-ID': user,
                       },
@@ -66,7 +67,7 @@ def submit_action(action:dict, user:str):
     server_id = action.get('entities', {}).get('server_id')
     if server_id is None:
         raise InvalidActionException
-    url = f"{os.environ['MANAGER_URL']}/api/v1/servers/{server_id}/action"
+    url = f"{os.environ[constants.MANAGER_URL]}/api/v1/servers/{server_id}/action"
 
     body = {
         'action': action['action'],
@@ -75,7 +76,7 @@ def submit_action(action:dict, user:str):
 
     r = requests.post(url,
                       headers={
-                          'Authorization': f"Bearer {os.environ['MANAGER_AUTH_TOKEN']}",
+                          'Authorization': f"Bearer {os.environ[constants.MANAGER_AUTH_TOKEN]}",
                           'Content-type': 'application/json',
                           'X-User-ID': user,
                       },

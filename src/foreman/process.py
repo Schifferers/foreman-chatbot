@@ -3,7 +3,7 @@ __author__ = "Paul Schifferer <paul@schifferers.net>"
 """
 
 import logging
-from slackbot.nlp import get_intent
+from foreman.nlp import get_intent
 
 
 def process_text(text:str):
