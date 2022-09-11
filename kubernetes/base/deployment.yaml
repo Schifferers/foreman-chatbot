@@ -25,8 +25,8 @@ spec:
                 platform: foreman
         spec:
             serviceAccountName: chatbot
-            # imagePullSecrets:
-            #     - name: schifferers-registry
+            imagePullSecrets:
+                - name: schifferers-registry
             containers:
                 - name: app
                   image: ghcr.io/schifferers/foreman-chatbot:latest
