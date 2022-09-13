@@ -41,7 +41,6 @@ jobs:
               with:
                   images: |
                       ghcr.io/schifferers/foreman-chatbot
-                      paulyhedral/foreman-chatbot
                   tags: |
                       type=raw,value=latest
                       type=raw,value=${{ steps.previoustag.outputs.tag }}
