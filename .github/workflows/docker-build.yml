@@ -40,7 +40,8 @@ jobs:
               uses: docker/metadata-action@v4
               with:
                   images: |
-                      ghcr.io/Schifferers/foreman-chatbot
+                      ghcr.io/schifferers/foreman-chatbot
+                      paulyhedral/foreman-chatbot
                   tags: |
                       type=raw,value=latest
                       type=raw,value=${{ steps.previoustag.outputs.tag }}
